@@ -1,10 +1,10 @@
 name: weekly-sync
 
+# The weekly cron was removed on 2026-09-17. The scheduled runs had been failing
+# because NOTION_TOKEN and NOTION_DATABASE_ID were never configured as repository
+# secrets, and the Notion job shortlist this synced no longer had an active owner.
+# Run it manually from the Actions tab if you decide to revive this.
 on:
-  schedule:
-    # Every Monday 09:00 UTC. Cron is in UTC; pick a slot that lands
-    # in your morning when you'd open Notion to plan the week.
-    - cron: "0 9 * * 1"
   workflow_dispatch:  # allow manual trigger from the Actions tab
 
 permissions:
