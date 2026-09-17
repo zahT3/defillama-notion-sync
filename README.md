@@ -1,8 +1,12 @@
 # defillama-notion-sync
 
 > Filter Web3 job-target companies by **real on-chain revenue**, not Twitter
-> hype. A weekly cron pipes DeFiLlama's chain economics into a Notion
-> shortlist I use to decide where to apply.
+> hype. It piped DeFiLlama's chain economics into a Notion shortlist used to
+> decide where to apply.
+>
+> **Archived 2026-09-17** — the shortlist it fed is no longer active, so the
+> weekly cron was removed and this repository was archived. The code stays
+> here as a reference; run it by hand from the Actions tab if you revive it.
 
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -38,8 +42,8 @@ DeFiLlama API → match by chain name → Notion company shortlist
                             "24h Revenue (USD)"  +  "TVL (USD)"  +  "Last Updated"
 ```
 
-Every Monday at 9am, the cron updates the numbers. When I open Notion to
-plan the week's applications, the signal is fresh.
+While the cron was running it refreshed the numbers every Monday at 9am, so
+planning the week's applications started from a fresh signal.
 
 ## What it actually does
 
@@ -57,7 +61,7 @@ no clever abstractions.
 ## Quickstart
 
 ```bash
-git clone <this repo>
+git clone https://github.com/zahT3/defillama-notion-sync.git
 cd defillama-notion-sync
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
@@ -94,8 +98,9 @@ Sample output:
 
 ### GitHub Actions (recommended — zero-infra)
 
-A workflow is included at `.github/workflows/weekly-sync.yml`. It runs
-every Monday at 09:00 UTC. To use:
+A workflow is included at `.github/workflows/weekly-sync.yml`. Its cron was
+removed when this repository was archived, so it now runs only on manual
+dispatch. To use it:
 
 1. Push this repo to GitHub.
 2. Repo → Settings → Secrets and variables → Actions → add:
@@ -153,7 +158,7 @@ It's also a deliberate portfolio artifact:
   daily fee revenue is the meaningful filter.
 - **Python + API hygiene**: pagination, idempotent updates, dry-run,
   structured logging, env-based config.
-- **Workflow-as-code**: the GitHub Actions schedule is the same pattern
+- **Workflow-as-code**: the GitHub Actions workflow is the same pattern
   I use for AI Agent automation in my day job.
 - **Pragmatism**: I'm not over-engineering. There's no ORM, no async, no
   abstract base class. The script does one thing.
